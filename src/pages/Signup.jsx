@@ -5,18 +5,14 @@ import { useRef } from 'react';
 
 const Signup = () => {
   const navigate = useNavigate();
-
   const nameRef = useRef(undefined);
   const emailRef = useRef(undefined);
   const passwordRef = useRef(undefined);
-
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const name = nameRef.current.value;
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-
     localStorage.setItem("name", name)
     localStorage.setItem("email", email)
     localStorage.setItem("password", password)
@@ -32,11 +28,11 @@ const Signup = () => {
         </div>
         <form onSubmit={handleSubmit}>
           <div class="input">
-            <i class="fa-solid fa-user"></i>
+            <i class="fa fa-user"></i>
             <input type="text" id="firstName" name="firstName" class="name" placeholder="Name" ref={nameRef} />
           </div>
           <div class="input">
-            <i class="fa-solid fa-envelope"></i>
+            <i class="fa fa-envelope"></i>
             <input
               type="text"
               id="email"
@@ -45,10 +41,9 @@ const Signup = () => {
               placeholder="Email"
               ref={emailRef}
             />
-
           </div>
           <div class="input">
-            <i class="fa-solid fa-lock"></i>
+            <i class="fa fa-key"></i>
 
             <input
               type="text"
@@ -62,8 +57,7 @@ const Signup = () => {
           <button class="btn btn-primary" type="submit">Submit</button>
         </form>
         <br />
-        <p style={{fontSize: "12px"}}>Already have an account <a href="/"> Sign in</a></p>
-
+        <p style={{ fontSize: "12px" }}>Already have an account <a href="/"> Sign in</a></p>
       </div>
     </div>
 

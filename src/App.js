@@ -1,22 +1,21 @@
 import React from "react";
-
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home.jsx";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import Room from "./pages/Room.jsx";
+import Homepage from "./pages/Homepage.jsx";
 
 const App = () => {
   return (
     <>
-      <Router>
+      <BrowserRouter>
         <Routes>
           <Route exact path="/"  element={<Login />} />
-          <Route path="/home"  element={<Home />}  />
+          <Route exact path="/home"  element={<Homepage />} />
           <Route exact path="/signup"  element={<Signup />}  />
           <Route exact path="/room/:roomId"  element={<Room />}  />
         </Routes>
-      </Router>
+      </BrowserRouter>
     </>
   );
 };

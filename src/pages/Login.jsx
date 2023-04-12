@@ -18,11 +18,12 @@ const Login = () => {
     let emailStored = localStorage.getItem("email")
     let passwordStored = localStorage.getItem("password")
     if (email === emailStored && password === passwordStored) {
-      //room id 
+      //room id maine User ka naam hi bana diaya because its a socket based chat room where people connect 
+      //usme one to one kara hai and emitting a video so is approach se hi it can be done only.
       const roomId= "piyushChat";
       localStorage.setItem("roomID", roomId)
       console.log("True Credentials")
-      navigate(`/room/${roomId}`);
+      navigate(`/home`);
     } else {
       alert("Credentials are wrong !")
     }
@@ -33,7 +34,6 @@ const Login = () => {
       "email": emailRef.current.value,
       "password": passwordRef.current.value
     }
-
     document.cookie = `"Email_password"=${JSON.stringify(obj1)}`
   };
   return (
@@ -46,6 +46,7 @@ const Login = () => {
           </div>
           <form onSubmit={handleSubmit}>
             <div className="input">
+            
               <input
                 type="text"
                 id="email"
@@ -56,7 +57,8 @@ const Login = () => {
               />
               <br />
               <br />
-              
+              <div style={{display: "flex"}}>
+                
               <input
                 type="text"
                 id="password"
@@ -65,6 +67,7 @@ const Login = () => {
                 placeholder="Password "
                 ref={passwordRef}
               />
+              </div>
               <br />
               <input type="checkbox" value="lsRememberMe" id="rememberMe" onClick={handleCookies} />
               <label htmlFor="rememberMe">Save password</label>
