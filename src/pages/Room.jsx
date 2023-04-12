@@ -27,13 +27,13 @@ const Room = () => {
       showRoomDetailsButton: false,
       container: element,
       showPreJoinView: false,
-      
       onJoinRoom: (users) => {
         localStorage.setItem("Joined", users)
       },
       onLeaveRoom: (users) => {
         localStorage.setItem("Leaved", users)
         navigate('/home')
+
       },
       scenario: {
         mode: ZegoUIKitPrebuilt.OneONoneCall
