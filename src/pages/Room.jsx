@@ -15,13 +15,13 @@ const Room = () => {
     const serverSecret = "ac9b78d89d4d73ef050074b5f4e4b690";
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomId, JSON.stringify(date), userName);
     const zc = ZegoUIKitPrebuilt.create(kitToken)
-
     zc.joinRoom({
       lowerLeftNotification: {
         showUserJoinAndLeave: false,
         showTextChat: false,
       },
       showUserList: true,
+      
       showRemoveUserButton: false,
       showPinButton: false,
       showRoomDetailsButton: false,
