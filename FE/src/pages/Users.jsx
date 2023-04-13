@@ -2,7 +2,7 @@
 export const user1 = {
     name: "Sanidhya",
     img: "https://media.licdn.com/dms/image/C5603AQEtby-I1SZvUQ/profile-displayphoto-shrink_400_400/0/1628272422196?e=1686787200&v=beta&t=A56jrAemsuQlvngLRW1-Kg1CCPA-idfC4nbnxqzbSu0",
-    email: "sanidhyabjj@gmail.com"
+    email: "piyushpatel2053@gmail.com"
 }
 export const user2= {
     name: "Ankit",

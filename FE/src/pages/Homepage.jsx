@@ -8,7 +8,6 @@ import './Homepage.css'
 
 
 const Homepage = () => {
- 
     const navigate = useNavigate()
     const [friend, setFriend] = useState();
     let userName = localStorage.getItem("name")
@@ -49,7 +48,7 @@ const Homepage = () => {
                 });
         }
         sendEmail(name, email);
-        navigate(`/room/${name}`);
+        // navigate(`/room/${name}`);
         // setInterval(function () { navigate(`/room/${name}`) }, 2000);
     }
 

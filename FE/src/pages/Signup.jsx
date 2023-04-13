@@ -34,7 +34,7 @@ const Signup = () => {
           <div class="input">
             <i class="fa fa-envelope"></i>
             <input
-              type="text"
+              type="email"
               id="email"
               name="email"
               class="email"

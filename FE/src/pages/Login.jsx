@@ -20,7 +20,7 @@ const Login = () => {
     if (email === emailStored && password === passwordStored) {
       //room id maine User ka naam hi bana diaya because its a socket based chat room where people connect 
       //usme one to one kara hai and emitting a video so is approach se hi it can be done only.
-      const roomId= "piyushChat";
+      const roomId = "piyushChat";
       localStorage.setItem("roomID", roomId)
       console.log("True Credentials")
       navigate(`/home`);
@@ -46,7 +46,7 @@ const Login = () => {
           </div>
           <form onSubmit={handleSubmit}>
             <div className="input">
-            
+              <i class="fa fa-envelope"></i>
               <input
                 type="text"
                 id="email"
@@ -55,10 +55,10 @@ const Login = () => {
                 placeholder="Email"
                 ref={emailRef}
               />
-              <br />
-              <br />
-              <div style={{display: "flex"}}>
-                
+            </div>
+            
+            <div className="input">
+              <i class="fa fa-key"></i>
               <input
                 type="text"
                 id="password"
@@ -67,21 +67,22 @@ const Login = () => {
                 placeholder="Password "
                 ref={passwordRef}
               />
-              </div>
-              <br />
-              <input type="checkbox" value="lsRememberMe" id="rememberMe" onClick={handleCookies} />
-              <label htmlFor="rememberMe">Save password</label>
-              <br />
-
-
-              <button className="btn btn-primary" type="submit">Submit</button>
             </div>
-          </form>
-          <br />
-          <p style={{ fontSize: "12px" }}>Create a New Account ?<a href="/signup"> Sign Up Here</a></p>
+            <div>
+            
+            <input type="checkbox" value="lsRememberMe" id="rememberMe" onClick={handleCookies} style={{marginRight:"10px"}}/>
+            <label htmlFor="rememberMe" style={{marginBottom: "10px"}}>Save password</label>
+            <br />
 
+
+            <button className="btn btn-primary" type="submit">Submit</button>
         </div>
-      </div>
+      </form>
+      <br />
+      <p style={{ fontSize: "12px" }}>Create a New Account ?<a href="/signup"> Sign Up Here</a></p>
+
+    </div >
+      </div >
     </>
   )
 };
