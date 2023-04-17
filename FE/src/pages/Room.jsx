@@ -30,7 +30,7 @@ const Room = () => {
         showTextChat: false,
       },
       showUserList: true,
-
+      showRoomTimer: true,
       showRemoveUserButton: false,
       showPinButton: false,
       showRoomDetailsButton: false,
