@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyparser = require('body-parser');
 const { dbConnectUser } = require('./mongodb')
 const port = 3000
+const jwt = require('jsonwebtoken')
 
 app.use(cors());
 app.use(bodyparser.json());
@@ -11,7 +12,6 @@ app.use(bodyparser.json());
 app.listen(port, () => {
     console.log(`app listening on port ${port}`)
 })
-
 //authAPI
 app.post('/auth', (request, res) => {
     let email = request.body.email;
@@ -20,20 +20,27 @@ app.post('/auth', (request, res) => {
         let userData = await dbConnectUser();
         userData = await userData.find({ "email": `${email}` }).toArray();
         userData = JSON.stringify(userData)
+        const token = jwt.sign(
+            { user_id:  email },
+            process.env.TOKEN_KEY,
+            {
+                expiresIn: "2h",
+            }
+        );
         if (userData === "[]") {
             res.send(false)
         }
+
         else {
             res.send({
                 data: true,
+                accessToken: token,
                 message: userData
             })
         }
     }
     auth()
 });
-
-
 //create user data in db 
 app.post("/createUser", (req, res) => {
     console.log("Post api to create user");
