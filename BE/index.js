@@ -14,6 +14,7 @@ app.listen(port, () => {
 })
 //authAPI
 app.post('/auth', (request, res) => {
+    console.log("Auth API Called...........")
     let email = request.body.email;
     let password = request.body.password;
     const auth = async () => {
@@ -36,6 +37,7 @@ app.post('/auth', (request, res) => {
 });
 //create user data in db 
 app.post("/createUser", (req, res) => {
+    console.log("Crate User API Called...........")
     console.log("Post api to create user");
     let name = req.body.name;
     let email = req.body.email;
