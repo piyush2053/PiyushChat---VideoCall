@@ -20,13 +20,7 @@ app.post('/auth', (request, res) => {
         let userData = await dbConnectUser();
         userData = await userData.find({ "email": `${email}` }).toArray();
         userData = JSON.stringify(userData)
-        const token = jwt.sign(
-            { user_id:  email },
-            process.env.TOKEN_KEY,
-            {
-                expiresIn: "2h",
-            }
-        );
+        const token = jwt.sign({ user_id:  email },process.env.TOKEN_KEY,{expiresIn: "2h",});
         if (userData === "[]") {
             res.send(false)
         }

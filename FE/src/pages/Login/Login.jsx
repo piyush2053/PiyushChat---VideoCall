@@ -1,15 +1,10 @@
-import {createContext, React, useContext} from "react";
+import  React from "react";
 import './Login.css'
 import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import axios from 'axios'
 import { apiEndPoints } from '../ApiEndPoints/apiEndPoints'
 
-const UserContext = createContext();
-
-const useAuth = () => {
-  return useContext(UserContext)
-};
 
 const Login = () => {
 
@@ -102,4 +97,4 @@ const Login = () => {
 };
 
 
-export default {useAuth, Login};
+export default Login;

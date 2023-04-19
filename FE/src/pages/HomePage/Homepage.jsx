@@ -15,24 +15,6 @@ const Homepage = () => {
         xyz.style.display = "flex"
         setFriend(name)
         localStorage.setItem("friendsName", name)
-        // const CallLink = `http://localhost:3000/room/${name}`
-        //calling..................
-        //sendMail function
-        // function sendEmail() {
-        //     Email.send({
-        //         Host: "smtp.gmail.com",
-        //         Username: "kickstartcodes@gmail.com",
-        //         Password: "Camaro@2053",
-        //         To: 'piyushpatel2053@gmail.com',
-        //         From: "kickstartcodes@gmail.com",
-        //         Subject: "Pickup the Call",
-        //         Body: ".ajveb,akhfelqbcugefkgwvkjxgfqwmjeguvqfmkxegvfqge,fg",
-        //     })
-        //         .then(function (message) {
-        //             alert("mail sent successfully")
-        //         });
-        // }
-        // sendEmail()
         navigate(`/room/${name}`);
         // setInterval(function () { navigate(`/room/${name}`) }, 2000);
     }

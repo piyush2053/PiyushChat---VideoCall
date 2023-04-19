@@ -12,10 +12,10 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Login />} />
-          <Route element={<ProtectRoutes />}>
+          {/* <Route element={<ProtectRoutes />}> */}
             <Route exact path="/home" element={<Homepage />} />
             <Route exact path="/room/:roomId" element={<Room />} />
-          </Route>
+          {/* </Route> */}
           <Route exact path="/signup" element={<Signup />} />
 
         </Routes>
