@@ -20,6 +20,7 @@ const Homepage = () => {
     }
     const logout = () =>{
         localStorage.setItem("Logged In Status", false)
+        localStorage.removeItem("token")
         navigate('/')
     }
 
