@@ -3,12 +3,20 @@ import { user1, user2, user3 } from "../Users/Users"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Homepage.css'
+import axios from "axios";
 
 const Homepage = () => {
+
+    //email
+
+    //Email part
+    
+    //
+
     const navigate = useNavigate()
     const [friend, setFriend] = useState();
     let userName = localStorage.getItem("name")
-    
+
     const clickCall = (email, name) => {
         console.log(email)
         let xyz = document.getElementById("calling")
@@ -18,7 +26,7 @@ const Homepage = () => {
         navigate(`/room/${name}`);
         // setInterval(function () { navigate(`/room/${name}`) }, 2000);
     }
-    const logout = () =>{
+    const logout = () => {
         localStorage.setItem("Logged In Status", false)
         localStorage.removeItem("token")
         navigate('/')
@@ -27,9 +35,9 @@ const Homepage = () => {
     return (
         <>
             <div style={{ backgroundColor: "white", boxShadow: 'inherit', padding: "25px", borderRadius: "20px" }}>
-            <div style={{display: "flex", justifyContent: "space-between"}}>
-                <h2>Welcome Back , {userName}</h2>
-                <p onClick={(e)=>logout()}  style={{ cursor: "pointer",backgroundColor: "#FF1744", width: "80px", color: "white", paddingLeft: "10px", borderRadius: "10px", paddingTop: "5px" }}>Logout <i className="fa fa-user"></i></p>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <h2>Welcome Back , {userName}</h2>
+                    <p onClick={(e) => logout()} style={{ cursor: "pointer", backgroundColor: "#FF1744", width: "80px", color: "white", paddingLeft: "10px", borderRadius: "10px", paddingTop: "5px" }}>Logout <i className="fa fa-user"></i></p>
                 </div>
                 <p>So happy to Have you ! Have a chat with your friends and Tell them to login and Join you</p>
                 <p style={{ backgroundColor: "Green", width: "100px", color: "white", paddingLeft: "10px", borderRadius: "10px" }}>Friends List</p>

@@ -23,10 +23,11 @@ const ProtectedRoutes = () => {
                 setUser(res.data.result)
             }
             ).catch(function (error) {
-                // setUser(null)
+                // setUser("null")
                 console.log("error")
             });
     }, [])
+
     return userData !== null ? <Outlet /> : navigate("/")
 };
 

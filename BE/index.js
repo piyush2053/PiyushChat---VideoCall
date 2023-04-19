@@ -5,7 +5,6 @@ const bodyparser = require('body-parser');
 const { dbConnectUser } = require('./mongodb')
 const port = 3000
 const jwt = require('jsonwebtoken')
-const apiResponse = require("./apiResponse");
 
 app.use(cors());
 app.use(bodyparser.json());
@@ -57,18 +56,17 @@ app.post("/createUser", (req, res) => {
 
 app.get("/verify", async (req,res)=>{
     const headers = req.headers;
-    console.log(headers)
+    // console.log(headers)
     try {
-        console.info(JSON.stringify(headers));
-        // const result = await verifyToken(headers.accesstoken);
+        // console.info(JSON.stringify(headers));
        const data= jwt.verify(headers.accessToken,process.env.TOKEN_KEY,(error,payload)=>{
             if(error) throw("invalid")
             return payload
         })
-        if(result.error) throw(result.error)
-        res.status(200).send({result});
+        if(data.error) throw(data.error)
+        res.status(200).send({data});
     } catch (error) {
-        return res.send("apiResponse.error(error,400)");
+        return res.send(400);
         // console.log("error")
     }
 })
