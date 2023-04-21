@@ -5,6 +5,11 @@ const bodyparser = require('body-parser');
 const { dbConnectUser } = require('./mongodb')
 const port = 3000
 const jwt = require('jsonwebtoken')
+const redis = require('redis');
+const client = redis.createClient(6379, "127.0.0.1");
+client.on('connect', function() {
+    console.log('Redis Connected!');
+  });
 
 app.use(cors());
 app.use(bodyparser.json());
@@ -12,6 +17,10 @@ app.use(bodyparser.json());
 app.listen(port, () => {
     console.log(`app listening on port ${port}`)
 })
+
+
+//redis clien
+
 //authAPI
 app.post('/auth', (request, res) => {
     console.log("Auth API Called...........")
@@ -21,7 +30,7 @@ app.post('/auth', (request, res) => {
         let userData = await dbConnectUser();
         userData = await userData.find({ "email": `${email}` }).toArray();
         userData = JSON.stringify(userData)
-        const token = jwt.sign({ user_id:  email },process.env.TOKEN_KEY,{expiresIn: "20s",});
+        const token = jwt.sign({ user_id: email }, process.env.TOKEN_KEY, { expiresIn: "20s", });
         if (userData === "[]") {
             res.send(false)
         }
@@ -56,20 +65,38 @@ app.post("/createUser", (req, res) => {
     creatingUser();
 })
 
-app.get("/verify", async (req,res)=>{
+app.get("/verify", async (req, res) => {
     const headers = req.headers;
     // console.log(headers)
     try {
         // console.info(JSON.stringify(headers));
-       const data= jwt.verify(headers.accessToken,process.env.TOKEN_KEY,(error,payload)=>{
-            if(error) throw("invalid")
+        const data = jwt.verify(headers.accessToken, process.env.TOKEN_KEY, (error, payload) => {
+            if (error) throw ("invalid")
             return payload
         })
-        if(data.error) throw(data.error)
-        res.status(200).send({data});
+        if (data.error) throw (data.error)
+        res.status(200).send({ data });
     } catch (error) {
         return res.send(400);
         // console.log("error")
     }
 })
 
+app.post("/redis", (req, res) => {
+    let key = req.body.keyRedis;
+    console.log("Redis API callleld.............................")
+    client.get(key, function(err, result) {
+        res.send(JSON.stringify(result)); // ReactJS
+      });
+})
+
+app.post("/redisSet", (req, res) => {
+    let key = req.body.keyRedis;
+    let value = req.body.valueRedis;
+    // res.send(key)
+    console.log("Redis API set callleld.............................", )
+    client.set(key, value, function (err, result) {
+        res.send(`Succesfuly setted in the Key ${result}`); 
+    });
+
+})
