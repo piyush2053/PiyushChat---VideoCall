@@ -116,3 +116,16 @@ app.post("/redisAdd", (req, res) => {
     //     res.send(`Succesfuly setted in the Key ${result}`); 
     // });
 })
+
+app.delete("/redisDelete", (req, res) => {
+    let key = req.body.keyRedis;
+    console.log("Redis Delete api called")
+    client.del(key, function(err, response) {
+        if (response == 1) {
+           res.send("Deleted Successfully!")
+        } else{
+            res.send("Cannot delete")
+        }
+     })
+    
+})
