@@ -6,10 +6,17 @@ const { dbConnectUser } = require('./mongodb')
 const port = 3000
 const jwt = require('jsonwebtoken')
 const redis = require('redis');
-const client = redis.createClient(6379, "127.0.0.1");
-client.on('connect', function() {
+const client = redis.createClient({
+    host: process.env.REDIS_HOSTNAME,
+    port: process.env.REDIS_PORT,
+    password: process.env.REDIS_PASSWORD
+});
+const bcrypt = require("bcrypt")
+const saltRounds = 10
+
+client.on('connect', function () {
     console.log('Redis Connected!');
-  });
+});
 
 app.use(cors());
 app.use(bodyparser.json());
@@ -85,18 +92,27 @@ app.get("/verify", async (req, res) => {
 app.post("/redis", (req, res) => {
     let key = req.body.keyRedis;
     console.log("Redis API callleld.............................")
-    client.get(key, function(err, result) {
+    client.get(key, function (err, result) {
         res.send(JSON.stringify(result)); // ReactJS
-      });
+    });
 })
 
 app.post("/redisSet", (req, res) => {
     let key = req.body.keyRedis;
     let value = req.body.valueRedis;
     // res.send(key)
-    console.log("Redis API set callleld.............................", )
+    console.log("Redis API set callleld.............................",)
     client.set(key, value, function (err, result) {
-        res.send(`Succesfuly setted in the Key ${result}`); 
+        res.send(`Succesfuly setted in the Key ${result}`);
     });
+})
 
+app.post("/redisAdd", (req, res) => {
+    let key = req.body.keyRedis;
+    let value = req.body.valueRedis;
+    // res.send(key)
+    console.log("Redis API ADD callleld",)
+    // client.set(key, value, function (err, result) {
+    //     res.send(`Succesfuly setted in the Key ${result}`); 
+    // });
 })
