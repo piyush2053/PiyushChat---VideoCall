@@ -3,7 +3,7 @@ const app = express()
 const cors = require('cors');
 const bodyparser = require('body-parser');
 const { dbConnectUser } = require('./mongodb')
-const port = 3000
+const port = 4000
 const jwt = require('jsonwebtoken')
 const redis = require('redis');
 const client = redis.createClient({
@@ -28,6 +28,9 @@ app.listen(port, () => {
 
 //redis clien
 
+app.get("/", (req, res)=>{
+    res.send("Hello backend....")
+})
 //authAPI
 app.post('/auth', (request, res) => {
     console.log("Auth API Called...........")
