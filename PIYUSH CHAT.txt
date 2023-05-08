@@ -1,7 +1,7 @@
 PIYUSH CHAT
 
 FE Url-:
-https://pchat-66b6f.web.app
+https://piyushchat.onrender.com
 
 Backend URL
 http://52.91.16.159:4000/
